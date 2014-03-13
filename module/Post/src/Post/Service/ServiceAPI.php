@@ -12,7 +12,7 @@ class ServiceAPI
     public function testFunction()
     {
 
-        return 'this is a test function!33333';
+        return 'this is a test function!';
 
     }
 

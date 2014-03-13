@@ -1,6 +1,7 @@
 <?php
 namespace Post;
 
+use Post\Controller\PostController;
 use Zend\Authentication\AuthenticationService,
     Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
 
@@ -28,6 +29,14 @@ class Module
 
     public function getServiceConfig()
     {
+        return array(
+            'factories' => array(
+                'Post\Controller\PostController' => function() {
+                        $post = new PostController();
+                        return $post;
+                    },
+            ),
+        );
 
     }
 

@@ -10,6 +10,7 @@ return array(
     'controllers'  => array(
         'invokables' => array(
             'Post\Controller\Post' => 'Post\Controller\PostController',
+            'Post\Controller\Handler' => 'Post\Controller\HandlerController',
         ),
     ),
 
@@ -30,6 +31,23 @@ return array(
                     ),
                 ),
             ),
+
+            'handler' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'       => '/handler[/][:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults'    => array(
+                        'controller' => 'Post\Controller\Handler',
+                        'action'     => 'soap',
+                    ),
+                ),
+            ),
+
+
         ),
     ),
 
