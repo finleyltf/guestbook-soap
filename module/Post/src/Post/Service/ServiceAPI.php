@@ -17,4 +17,15 @@ class ServiceAPI
     }
 
 
+    /**
+     * @return int a int result
+     */
+    public function testFunction2()
+    {
+
+        return 123;
+
+    }
+
+
 }

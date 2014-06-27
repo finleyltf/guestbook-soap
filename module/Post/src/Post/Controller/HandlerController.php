@@ -41,16 +41,20 @@ class HandlerController extends AbstractActionController
 
 
         // set SOAP service class
-//        $server->setClass('Post\Service\ServiceAPI');
+//        $server->setClass('Post\\Service\\ServiceAPI');
         // test here
-//        $server->setClass('Post\Controller\PostController');
+//        $server->setClass('Post\\Controller\\PostController');
         $apiObject = $this->serviceLocator->get('Post\Controller\PostController');
         $server->setObject($apiObject);
 
         // handle request
         $server->handle();
 
-        exit;
+        $result = $server->handle();
+        echo '<pre>';
+        var_dump($result);
+        echo '</pre>';
+//        exit;
 
     }
 
@@ -71,14 +75,14 @@ class HandlerController extends AbstractActionController
         // attach SOAP service class
 //        $autoDiscover->setClass('Post\Service\ServiceAPI');
         // test here
-//        $autoDiscover->setClass('Post\Controller\PostController');
+//        $autoDiscover->setClass('Post\\Service\\ServiceAPI');
         $apiObject = $this->serviceLocator->get('Post\Controller\PostController');
-        $autoDiscover->setObject($apiObject);
+        $autoDiscover->setClass($apiObject);
 
 
-        $wsdl = $autoDiscover->generate();
+        $autoDiscover->generate();
 
-        $xmlResult = $autoDiscover->toXml();
+//        echo $autoDiscover->toXml();
 
 
         // handle request
@@ -105,10 +109,11 @@ class HandlerController extends AbstractActionController
         // test here
         $result = $client->indexAction();
 
-
         echo '<pre>';
         var_dump($result);
-        echo '</pre>';die;
+        echo '</pre>';
+
+        return $result;
 
 
     }
